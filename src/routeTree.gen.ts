@@ -16,7 +16,6 @@ import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as DisclaimerRouteImport } from './routes/disclaimer'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as TermsRouteImport } from './routes/terms'
-import { Route as UpdatesRouteImport } from './routes/updates'
 import { Route as DocSlugRouteImport } from './routes/doc.$slug'
 import { Route as MoreRepoRouteImport } from './routes/more.$repo'
 
@@ -55,11 +54,6 @@ const TermsRoute = TermsRouteImport.update({
   path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
-const UpdatesRoute = UpdatesRouteImport.update({
-  id: '/updates',
-  path: '/updates',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const DocSlugRoute = DocSlugRouteImport.update({
   id: '/doc/$slug',
   path: '/doc/$slug',
@@ -79,7 +73,6 @@ export interface FileRoutesByFullPath {
   '/disclaimer': typeof DisclaimerRoute
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
-  '/updates': typeof UpdatesRoute
   '/doc/$slug': typeof DocSlugRoute
   '/more/$repo': typeof MoreRepoRoute
 }
@@ -91,7 +84,6 @@ export interface FileRoutesByTo {
   '/disclaimer': typeof DisclaimerRoute
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
-  '/updates': typeof UpdatesRoute
   '/doc/$slug': typeof DocSlugRoute
   '/more/$repo': typeof MoreRepoRoute
 }
@@ -104,7 +96,6 @@ export interface FileRoutesById {
   '/disclaimer': typeof DisclaimerRoute
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
-  '/updates': typeof UpdatesRoute
   '/doc/$slug': typeof DocSlugRoute
   '/more/$repo': typeof MoreRepoRoute
 }
@@ -118,7 +109,6 @@ export interface FileRouteTypes {
     | '/disclaimer'
     | '/privacy'
     | '/terms'
-    | '/updates'
     | '/doc/$slug'
     | '/more/$repo'
   fileRoutesByTo: FileRoutesByTo
@@ -130,7 +120,6 @@ export interface FileRouteTypes {
     | '/disclaimer'
     | '/privacy'
     | '/terms'
-    | '/updates'
     | '/doc/$slug'
     | '/more/$repo'
   id:
@@ -142,7 +131,6 @@ export interface FileRouteTypes {
     | '/disclaimer'
     | '/privacy'
     | '/terms'
-    | '/updates'
     | '/doc/$slug'
     | '/more/$repo'
   fileRoutesById: FileRoutesById
@@ -155,7 +143,6 @@ export interface RootRouteChildren {
   DisclaimerRoute: typeof DisclaimerRoute
   PrivacyRoute: typeof PrivacyRoute
   TermsRoute: typeof TermsRoute
-  UpdatesRoute: typeof UpdatesRoute
   DocSlugRoute: typeof DocSlugRoute
   MoreRepoRoute: typeof MoreRepoRoute
 }
@@ -211,13 +198,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/updates': {
-      id: '/updates'
-      path: '/updates'
-      fullPath: '/updates'
-      preLoaderRoute: typeof UpdatesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/doc/$slug': {
       id: '/doc/$slug'
       path: '/doc/$slug'
@@ -243,7 +223,6 @@ const rootRouteChildren: RootRouteChildren = {
   DisclaimerRoute: DisclaimerRoute,
   PrivacyRoute: PrivacyRoute,
   TermsRoute: TermsRoute,
-  UpdatesRoute: UpdatesRoute,
   DocSlugRoute: DocSlugRoute,
   MoreRepoRoute: MoreRepoRoute,
 }

@@ -15,6 +15,7 @@ import { legacyGreeting, legacySearch, type LegacyPageData } from '@/lib/legacy-
 import repairs from '@/styles/legacy-repairs.css?raw';
 import { DocumentSearchInput } from '@/components/document-search-input';
 import { moreDocumentsHref, type MoreDocumentsRepo } from '@/data/more-documents';
+import { addClassResourceMenus } from '@/lib/class-resource-menus';
 
 export function LegacyPage({ data, fragments, moreDocuments }: { data: LegacyPageData; fragments: Record<string, string>; moreDocuments?: MoreDocumentsRepo[] | undefined }) {
   const [query, setQuery] = useState('');
@@ -53,10 +54,11 @@ export function LegacyPage({ data, fragments, moreDocuments }: { data: LegacyPag
   // Repair only the audited malformed input: its embedded icon closes the input
   // early and leaves the placeholder sentence as visible text outside the bar.
   const repairSearchMarkup = (html: string) => html.replace(/<input\b(?=[^>]*\bid="searchInput")[^\n]*?<\/i>\s*Type a keyword here to search\.\.\."\s*type="text"\s*\/>/g, '<input id="searchInput" type="search"/>');
-  const source = repairSearchMarkup(fragments[data.template] ?? '');
+  const originalSource = repairSearchMarkup(fragments[data.template] ?? '');
+  const source = moreDocuments ? addClassResourceMenus(originalSource) : originalSource;
   const nodeText = (node: DOMNode): string => 'data' in node ? node.data : 'children' in node ? (node.children as DOMNode[]).map(nodeText).join(' ') : '';
   const groupKey = (node: Element) => nodeText(node).trim();
-  const isHoliday = (node: Element) => /HOLIDAY\s+PACKAGES/i.test(nodeText(node));
+  const isMoreDocuments = (node: Element) => /MORE\s+DOCUMENTS/i.test(nodeText(node));
   const dropdownKeys = new WeakMap<Element, string>();
   let dropdownIndex = 0;
   const dropdownKey = (node: Element) => {
@@ -112,13 +114,13 @@ export function LegacyPage({ data, fragments, moreDocuments }: { data: LegacyPag
     if (node.attribs['data-toggle'] === 'dropdown' && node.parent instanceof Element) {
       const key = dropdownKey(node.parent);
       const activate = (element: HTMLElement) => { dropdownTrigger.current = element; setDropdown(current => current === key ? null : key); };
-      const label = moreDocuments && isHoliday(node) ? <><b>MORE DOCUMENTS</b> <span aria-hidden="true" className="fa fa-check" /> | <span className="caret" /></> : children(node);
+      const label = moreDocuments && isMoreDocuments(node) ? <><b>MORE DOCUMENTS</b> <span aria-hidden="true" className="fa fa-check" /> | <span className="caret" /></> : children(node);
       if (node.name === 'button') return <Button {...props} type="button" variant="source" size="source" className={`${classes} legacy-control legacy-dropdown-trigger`} aria-expanded={dropdown === key} onClick={event => activate(event.currentTarget)}>{label}</Button>;
       return <Button asChild variant="source" size="source"><a {...props} className={`${classes} legacy-control legacy-dropdown-trigger`} href="#" role="button" aria-expanded={dropdown === key} onClick={event => { event.preventDefault(); activate(event.currentTarget); }} onKeyDown={event => { if (event.key === ' ') { event.preventDefault(); activate(event.currentTarget); } }}>{children(node)}</a></Button>;
     }
     if (classes.split(' ').includes('dropdown-menu') && node.parent instanceof Element) {
       const opened = dropdown === dropdownKey(node.parent);
-      const content = moreDocuments && isHoliday(node.parent) ? moreDocuments.map((item, index) => <Fragment key={item.repo}>{index > 0 && <li className="divider" style={{ marginTop: 0, marginBottom: 0 }} />}<li><a href={moreDocumentsHref(item.repo)}>{item.label}</a></li></Fragment>) : children(node);
+      const content = moreDocuments && isMoreDocuments(node.parent) ? moreDocuments.map((item, index) => <Fragment key={item.repo}>{index > 0 && <li className="divider" style={{ marginTop: 0, marginBottom: 0 }} />}<li><a href={moreDocumentsHref(item.repo)}>{item.label}</a></li></Fragment>) : children(node);
       return <ul {...props} hidden={!opened} className={`${classes} ${opened ? 'legacy-panel-open' : 'legacy-dropdown-closed'}`} onClick={event => { if (event.target instanceof window.Element && event.target.closest('a[href]')) setDropdown(null); }}>{content}</ul>;
     }
     const isToggle = node.name === 'a' && node.attribs['href'] === '#' && node.parent instanceof Element && node.parent.children.some(child => child instanceof Element && ['ul', 'div'].includes(child.name));

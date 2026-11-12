@@ -689,10 +689,8 @@ export function Index() {
         <ImportedFont {...({ color: "#006bb3" } as any)}>
           <div className={"\x63ontainer"}>
             <div className="homepage-updates">
-              <strong>NEW UPDATES AVAILABLE!</strong>
-              <Button asChild variant="source" size="source">
-                <Link to="/updates">Click here to view newly added items</Link>
-              </Button>
+              <strong>WELCOME TO FRESH TEACHER'S LIBRARY</strong>
+              <span>Choose one class from the shelf to continue.</span>
             </div>
             <div className={"page-wrapper"}>
               {homepageShelves.map((shelf, shelfIndex) => (

@@ -30,7 +30,7 @@ a.africaVotesChat { z-index: 2002; }
 .library-homepage .container { padding-inline: 8px; min-height: calc(100svh - var(--library-appbar-height)); display: flex; flex-direction: column; }
 .library-homepage .homepage-updates {
   position: relative; isolation: isolate; box-sizing: border-box; flex: none;
-  width: min(100%, 440px); min-height: 64px; margin: 6px auto;
+  width: min(100%, 540px); min-height: 64px; margin: 6px auto;
   display: flex; flex-direction: column; justify-content: center; align-items: center;
   gap: 1px; padding: 9px 20px 10px; border: 0;
   background: url('/site-assets/updates-wooden-plank.webp') center / 100% 100% no-repeat;
@@ -40,17 +40,19 @@ a.africaVotesChat { z-index: 2002; }
 }
 .library-homepage .homepage-updates strong {
   /* Override the imported site's global important green strong-text rule only within this notice. */
-  font-size: 23px; line-height: 23px; font-weight: 700; color: var(--updates-ink) !important;
+  max-width: 100%; overflow-wrap: normal; font-size: 23px; line-height: 23px; font-weight: 700; color: var(--updates-ink) !important;
   text-shadow: 0 1px 0 var(--updates-wood-highlight);
   transform: rotate(-1deg);
 }
-.library-homepage .homepage-updates a {
+.library-homepage .homepage-updates span {
   position: relative; font-family: inherit; font-size: 19px; line-height: 21px; font-weight: 600;
-  color: var(--updates-ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; white-space: normal;
+  max-width: 100%; color: var(--updates-ink); white-space: normal;
   text-shadow: 0 1px 0 var(--updates-wood-highlight);
 }
-.library-homepage .homepage-updates a:hover { color: var(--updates-ink-hover); }
-.library-homepage .homepage-updates a:focus-visible { outline: 2px solid var(--updates-ink); outline-offset: 2px; }
+@media (max-width: 540px) {
+  .library-homepage .homepage-updates strong { font-size: 19px; line-height: 20px; }
+  .library-homepage .homepage-updates span { font-size: 17px; line-height: 18px; }
+}
 .library-homepage .bookshelf { width: min(100%, 850px, calc((100svh - var(--library-appbar-height) - 96px) * .64)); margin-inline: auto; flex: none; }
 .library-homepage .covers { max-width: none; display: flex; justify-content: center; align-items: flex-end; gap: 1%; }
 .library-homepage .bookshelf .thumb { width: 21% !important; max-width: 175px; margin: 0; }

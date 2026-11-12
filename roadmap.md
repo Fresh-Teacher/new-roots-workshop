@@ -57,12 +57,17 @@
 
 ## Menu loading
 - [x] Replace document-card placeholders on selection pages with title and dropdown shapes.
-- [ ] Verify loading and finished menu pages on phone and desktop while retaining document-list placeholders.
+- [x] Verify loading and finished menu pages on phone and desktop while retaining document-list placeholders.
 
 ## Homepage updates notice
-- [ ] Replace the neon notice with the supplied wooden plank and handwritten lettering; verify updates navigation and shelf visibility.
+- [x] Replace the neon notice with the supplied wooden plank and handwritten lettering; superseded updates navigation with a non-linked welcome.
 - [x] Match the notice to warm wood and gold, add a thin gold navigation accent, and verify all shelves stay visible on phone and desktop.
 - [x] Style the updates notice with embossed lettering, a rounded rectangular background and a circling neon edge; verify shelves remain above the fold.
 - [x] Replace the welcome and shelf instructions with the requested linked updates notice, keeping all shelves above the fold.
 - [x] Add an updates selection page with the existing dropdown behavior for Exams, Holiday Packages, Lesson Notes and Schemes of Work.
 - [x] Verify the homepage and updates navigation on phone and desktop.
+
+## Welcome and class resource menus
+- [x] Show the requested handwritten welcome and shelf instruction without a plank link; remove the updates page.
+- [x] Add examinations and holiday menus to all classes, preserving the exams downward entrance and existing holiday animations.
+- [x] Verify class-specific links with sixteen catalog tests, dropdown interaction, phone/desktop text fit and holiday resource navigation at three screen sizes.

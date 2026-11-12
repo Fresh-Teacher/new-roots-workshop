@@ -34,7 +34,7 @@ use the editor.
 - Re-upload imported asset-pointer media into the destination project's asset storage and replace embedded URLs too; project-scoped source pointers cannot serve in another app.
 - Keep the educational resource catalog static and publicly readable; the source has no database or account workflow.
 - Keep homepage shelf assignments in a static data module so class grouping and ordering can be tested independently of presentation.
-- Keep updates categories in a static module and render them with LegacyPage so selection controls retain the catalog's existing dropdown animations and dismissal behavior; do not label existing catalog files as new additions without an explicit update list.
+- Derive class examination and holiday menus from audited class links through the browser-safe class-resource helper, preserving imported fragments and LegacyPage dropdown dismissal; never invent term assignments or cross-class links.
 - Size homepage shelves against both available width and the small viewport height, keeping the shared footer after the screen-height shelf area; this prevents the final row from falling below the fold.
 - Keep home-screen support manifest-only unless offline use is explicitly requested; native install eligibility gates Chromium offers and Safari has manual guidance.
 - Track visible browsing time in session storage and installation evidence in local storage so navigation does not restart the offer delay and completed installs suppress future offers.
