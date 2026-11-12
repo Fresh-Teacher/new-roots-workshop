@@ -114,7 +114,7 @@ export function LegacyPage({ data, fragments, moreDocuments }: { data: LegacyPag
     if (node.attribs['data-toggle'] === 'dropdown' && node.parent instanceof Element) {
       const key = dropdownKey(node.parent);
       const activate = (element: HTMLElement) => { dropdownTrigger.current = element; setDropdown(current => current === key ? null : key); };
-      const label = moreDocuments && isMoreDocuments(node) ? <><b>MORE ITEMS</b> <span aria-hidden="true" className="fa fa-check" /> | <span className="caret" /></> : children(node);
+      const label = moreDocuments && isMoreDocuments(node) ? <b>MORE ITEMS</b> : children(node);
       if (node.name === 'button') return <Button {...props} type="button" variant="source" size="source" className={`${classes} legacy-control legacy-dropdown-trigger`} aria-expanded={dropdown === key} onClick={event => activate(event.currentTarget)}>{label}</Button>;
       return <Button asChild variant="source" size="source"><a {...props} className={`${classes} legacy-control legacy-dropdown-trigger`} href="#" role="button" aria-expanded={dropdown === key} onClick={event => { event.preventDefault(); activate(event.currentTarget); }} onKeyDown={event => { if (event.key === ' ') { event.preventDefault(); activate(event.currentTarget); } }}>{children(node)}</a></Button>;
     }

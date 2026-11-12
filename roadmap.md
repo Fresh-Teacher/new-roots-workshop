@@ -76,3 +76,7 @@
 - [x] Move Examinations and Holiday Packages first and More Items last without changing destinations or dropdown entrances.
 - [x] Add red blinking NEW! text on explosion-shaped backgrounds beside both featured menus.
 - [x] Verify menu spacing and dropdowns on desktop and phone, and run the class resource checks.
+
+## Compact menu notices
+- [x] Place smaller NEW! bursts inside the two featured buttons and remove menu icons and separators.
+- [ ] Verify compact buttons and original dropdown animations on phone and desktop.

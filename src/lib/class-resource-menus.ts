@@ -7,7 +7,7 @@ export function addClassResourceMenus(source: string): string {
   const links = Array.from(papers.matchAll(/<a href="([^"]+)">([^<]+)<\/a>/g), match => ({ href: match[1] ?? '', label: match[2] ?? '' }));
   const holidays = links.filter(link => /packages/i.test(link.label));
   const exams = links.filter(link => !/packages/i.test(link.label));
-  const menu = (label: string, animation: string, items: typeof links) => `<div class="btn-group m-r-10 class-resource-featured"><button class="btn btn-info dropdown-toggle waves-effect waves-light" data-toggle="dropdown" type="button"><b>${label}</b> <span aria-hidden="true" class="fa fa-check"></span> | <span class="caret"></span></button><span class="class-resource-new"><span>NEW!</span></span><ul class="dropdown-menu animated ${animation}" role="menu">${items.length ? items.map(item => `<li><a href="${item.href}">${item.label}</a></li>`).join('') : '<li><span class="class-resource-empty" role="status">No holiday packages listed yet.</span></li>'}</ul></div>`;
+  const menu = (label: string, animation: string, items: typeof links) => `<div class="btn-group m-r-10 class-resource-featured"><button class="btn btn-info dropdown-toggle waves-effect waves-light" data-toggle="dropdown" type="button"><b>${label}</b> <span class="class-resource-new"><span>NEW!</span></span></button><ul class="dropdown-menu animated ${animation}" role="menu">${items.length ? items.map(item => `<li><a href="${item.href}">${item.label}</a></li>`).join('') : '<li><span class="class-resource-empty" role="status">No holiday packages listed yet.</span></li>'}</ul></div>`;
   const holidayAnimation = originalHoliday.match(/dropdown-menu animated ([\w]+)/)?.[1] ?? 'slideInUp';
   // Keep audited controls intact while moving featured resources first and extras last.
   const remaining = groups.filter(group => group !== originalHoliday);
@@ -16,5 +16,8 @@ export function addClassResourceMenus(source: string): string {
   if (!first || !last) return source;
   const featured = `${menu('EXAMINATIONS', 'bounceInDown', exams)}${menu('HOLIDAY PACKAGES', holidayAnimation, holidays)}`;
   const extras = originalHoliday.replace(/HOLIDAY PACKAGES/g, 'MORE ITEMS');
-  return source.replace(originalHoliday, '').replace(first, `${featured}${first}`).replace(last, `${last}${extras}`);
+  return source.replace(originalHoliday, '').replace(first, `${featured}${first}`).replace(last, `${last}${extras}`)
+    .replace(/<button\b[^>]*data-toggle="dropdown"[^>]*>.*?<\/button>/gs, button => button
+      .replace(/<span\b[^>]*class="(?:fa[^"\n]*|caret)"[^>]*>.*?<\/span>/gs, '')
+      .replace(/\|/g, ''));
 }

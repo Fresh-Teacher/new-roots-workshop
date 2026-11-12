@@ -21,8 +21,9 @@
 .legacy-selection .necta1 > .btn-group { margin-bottom: 10px; vertical-align: top; }
 .legacy-page .class-resource-empty { display: block; padding: 8px 16px; white-space: normal; }
 .legacy-page .class-resource-featured { white-space: nowrap; max-width: 100%; }
-.legacy-page .class-resource-new { display: inline-grid; place-items: center; vertical-align: middle; width: 58px; height: 42px; margin-left: 6px; background: var(--resource-new-burst); color: var(--resource-new-text); clip-path: polygon(50% 0, 61% 20%, 82% 5%, 79% 30%, 100% 35%, 85% 50%, 100% 68%, 77% 72%, 82% 96%, 60% 81%, 50% 100%, 39% 80%, 17% 96%, 22% 72%, 0 65%, 15% 50%, 0 32%, 24% 29%, 19% 5%, 40% 20%); }
-.legacy-page .class-resource-new > span { font-size: 13px; font-weight: 900; letter-spacing: 0; animation: resource-new-blink 1.4s ease-in-out infinite; }
+.legacy-page .class-resource-new { display: inline-grid; place-items: center; vertical-align: middle; flex: 0 0 36px; width: 36px; height: 24px; background: var(--resource-new-burst); color: var(--resource-new-text); clip-path: polygon(50% 0, 61% 20%, 82% 5%, 79% 30%, 100% 35%, 85% 50%, 100% 68%, 77% 72%, 82% 96%, 60% 81%, 50% 100%, 39% 80%, 17% 96%, 22% 72%, 0 65%, 15% 50%, 0 32%, 24% 29%, 19% 5%, 40% 20%); }
+.legacy-page .class-resource-featured > .legacy-dropdown-trigger { gap: 6px; }
+.legacy-page .class-resource-new > span { font-size: 9px; font-weight: 900; letter-spacing: 0; animation: resource-new-blink 1.4s ease-in-out infinite; }
 @keyframes resource-new-blink { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .2; transform: scale(.88); } }
 /* Reserve space for open lists in stacked menus so neither links nor triggers overlap. */
 @media (max-width: 767px) {
