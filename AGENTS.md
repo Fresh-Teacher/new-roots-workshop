@@ -1,0 +1,48 @@
+<!-- LOVABLE:BEGIN -->
+> [!IMPORTANT]
+> This project is connected to [Lovable](https://lovable.dev). Avoid rewriting
+> published git history — force pushing, or rebasing/amending/squashing commits
+> that are already pushed — as it rewrites history on Lovable's side and the
+> user will likely lose their project history.
+>
+> Commits you push to the connected branch sync back to Lovable and show up in
+> the editor, so keep the branch in a working state.
+
+## What Lovable manages
+
+Rules outside this block are the project's own. Change the pieces below in
+Lovable, not by hand. With the [Lovable MCP](https://mcp.lovable.dev)
+connected, `send_message` asks Lovable to do it; otherwise ask the user to
+use the editor.
+
+- **Database.** Do not add or edit `supabase/migrations/` or `drizzle/`.
+  Ask Lovable to change the schema.
+- **Generated files.** Do not edit a file whose header says it is automatically
+  generated.
+- **AI gateway.** Keep model calls on Lovable's gateway, and keep
+  `LOVABLE_API_KEY` out of browser code.
+- **Connectors.** Lovable provides native connectors. `list_connectors` shows
+  which are enabled; `add_connector` only returns the dashboard link. When a
+  connector is enabled, calls go through the connector gateway and need
+  `LOVABLE_API_KEY`. When Lovable does not provide one, users can bring their
+  own key and store it in Secrets.
+- **Secrets.** Lovable manages them. Do not put secret values in the repo.
+<!-- LOVABLE:END -->
+
+## Imported app structure
+- Preserve the target TanStack runtime and pinned framework dependencies; import the library routes, static catalog shards, and local media independently so repository imports do not replace hosting infrastructure.
+- Re-upload imported asset-pointer media into the destination project's asset storage and replace embedded URLs too; project-scoped source pointers cannot serve in another app.
+- Keep the educational resource catalog static and publicly readable; the source has no database or account workflow.
+- Keep homepage shelf assignments in a static data module so class grouping and ordering can be tested independently of presentation.
+- Keep updates categories in a static module and render them with LegacyPage so selection controls retain the catalog's existing dropdown animations and dismissal behavior; do not label existing catalog files as new additions without an explicit update list.
+- Size homepage shelves against both available width and the small viewport height, keeping the shared footer after the screen-height shelf area; this prevents the final row from falling below the fold.
+- Keep home-screen support manifest-only unless offline use is explicitly requested; native install eligibility gates Chromium offers and Safari has manual guidance.
+- Track visible browsing time in session storage and installation evidence in local storage so navigation does not restart the offer delay and completed installs suppress future offers.
+- Generate document overviews, quick facts and search metadata through one browser-safe static-catalog helper; omit unknown facts and avoid claims about file contents, pricing or curriculum not supported by the record.
+- Keep document information presentation separate from search descriptions and pass measured file size into it; show the labelled facts always visible under a plain heading, with no collapsible sections or repeated question-and-answer list.
+- Keep temporary import inspection screenshots and browser captures outside the repository; preserve catalog-source fixtures because regression tests compare original records and ordering.
+- Class "More Documents" dropdowns list Fresh-Teacher GitHub repos from one static map and load repo files in the browser from the public GitHub tree API; this keeps the catalog static and avoids a server rate-limit bottleneck.
+- Let the flipbook's native preloader own page loading; retain iframe readiness and check native completion in the parent so early messages cannot leave a loader stuck.
+- Select catch-all loading placeholders from the static manifest count: zero-document menu pages use dropdown shapes, while document listings retain their document grid, so pending content matches the destination.
+- Serve all site media (images, fonts, sounds) from `public/site-assets/` with lowercase, space-free names; no Lovable CDN pointers, so exports deploy unchanged on Vercel/Netlify/GitHub Pages.
+- Keep wooden-sign artwork separate from live HTML text and locally hosted handwriting fonts so notice links remain accessible and readable.
