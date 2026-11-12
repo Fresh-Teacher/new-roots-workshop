@@ -18,6 +18,7 @@
 .legacy-page .legacy-control.btn { border-radius: .25rem; }
 .legacy-page .legacy-panel-open { display: block !important; visibility: visible !important; }
 .legacy-page .legacy-dropdown-closed { display: none !important; }
+.legacy-selection .necta1 > .btn-group { margin-bottom: 10px; vertical-align: top; }
 .legacy-page .class-resource-empty { display: block; padding: 8px 16px; white-space: normal; }
 /* Reserve space for open lists in stacked menus so neither links nor triggers overlap. */
 @media (max-width: 767px) {
