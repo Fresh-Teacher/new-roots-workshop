@@ -71,3 +71,8 @@
 - [x] Show the requested handwritten welcome and shelf instruction without a plank link; remove the updates page.
 - [x] Add examinations and holiday menus to all classes, preserving the exams downward entrance and existing holiday animations.
 - [x] Verify class-specific links with sixteen catalog tests, dropdown interaction, phone/desktop text fit and holiday resource navigation at three screen sizes.
+
+## Class menu ordering and new notices
+- [x] Move Examinations and Holiday Packages first and More Items last without changing destinations or dropdown entrances.
+- [x] Add red blinking NEW! text on explosion-shaped backgrounds beside both featured menus.
+- [x] Verify menu spacing and dropdowns on desktop and phone, and run the class resource checks.

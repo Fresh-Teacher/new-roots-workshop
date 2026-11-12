@@ -58,7 +58,7 @@ export function LegacyPage({ data, fragments, moreDocuments }: { data: LegacyPag
   const source = moreDocuments ? addClassResourceMenus(originalSource) : originalSource;
   const nodeText = (node: DOMNode): string => 'data' in node ? node.data : 'children' in node ? (node.children as DOMNode[]).map(nodeText).join(' ') : '';
   const groupKey = (node: Element) => nodeText(node).trim();
-  const isMoreDocuments = (node: Element) => /MORE\s+DOCUMENTS/i.test(nodeText(node));
+  const isMoreDocuments = (node: Element) => /MORE\s+(?:DOCUMENTS|ITEMS)/i.test(nodeText(node));
   const dropdownKeys = new WeakMap<Element, string>();
   let dropdownIndex = 0;
   const dropdownKey = (node: Element) => {
@@ -114,7 +114,7 @@ export function LegacyPage({ data, fragments, moreDocuments }: { data: LegacyPag
     if (node.attribs['data-toggle'] === 'dropdown' && node.parent instanceof Element) {
       const key = dropdownKey(node.parent);
       const activate = (element: HTMLElement) => { dropdownTrigger.current = element; setDropdown(current => current === key ? null : key); };
-      const label = moreDocuments && isMoreDocuments(node) ? <><b>MORE DOCUMENTS</b> <span aria-hidden="true" className="fa fa-check" /> | <span className="caret" /></> : children(node);
+      const label = moreDocuments && isMoreDocuments(node) ? <><b>MORE ITEMS</b> <span aria-hidden="true" className="fa fa-check" /> | <span className="caret" /></> : children(node);
       if (node.name === 'button') return <Button {...props} type="button" variant="source" size="source" className={`${classes} legacy-control legacy-dropdown-trigger`} aria-expanded={dropdown === key} onClick={event => activate(event.currentTarget)}>{label}</Button>;
       return <Button asChild variant="source" size="source"><a {...props} className={`${classes} legacy-control legacy-dropdown-trigger`} href="#" role="button" aria-expanded={dropdown === key} onClick={event => { event.preventDefault(); activate(event.currentTarget); }} onKeyDown={event => { if (event.key === ' ') { event.preventDefault(); activate(event.currentTarget); } }}>{children(node)}</a></Button>;
     }
